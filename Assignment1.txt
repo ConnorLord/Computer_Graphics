@@ -1,0 +1,235 @@
+Connor Lord
+Assignment 1
+
+
+ACM Transactions on Graphics (TOG)
+
+@Article{Potmesil:1982:357299,
+editor = {Potmesil, M.},
+journal = {ACM Trans. Graph.},
+year = {1982},
+issn = {0730-0301},
+volume = {1},
+number = {2},
+issue_date = {April 1982},
+publisher = {ACM},
+address = {New York, NY, USA},
+}
+
+@article{Bitterli:2017:RJM:3151031.3132704,
+ author = {Bitterli, Benedikt and Jakob, Wenzel and Nov\'{a}k, Jan and Jarosz, Wojciech},
+ title = {Reversible Jump Metropolis Light Transport Using Inverse Mappings},
+ journal = {ACM Trans. Graph.},
+ issue_date = {January 2018},
+ volume = {37},
+ number = {1},
+ month = oct,
+ year = {2017},
+ issn = {0730-0301},
+ pages = {1:1--1:12},
+ articleno = {1},
+ numpages = {12},
+ url = {http://doi.acm.org/10.1145/3132704},
+ doi = {10.1145/3132704},
+ acmid = {3132704},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {Ray tracing, photorealistic rendering},
+} 
+
+
+IEEE Transactions on Visualization and Computer Graphics (TVCG)
+
+@ARTICLE{7847429, 
+author={S. Kim and S. Jeong and I. Woo and Y. Jang and R. Maciejewski and D. S. Ebert}, 
+journal={IEEE Transactions on Visualization and Computer Graphics}, 
+title={Data Flow Analysis and Visualization for Spatiotemporal Statistical Data without Trajectory Information}, 
+year={2018}, 
+volume={24}, 
+number={3}, 
+pages={1287-1300}, 
+keywords={Data mining;Data visualization;Gravity;Heating;Market research;Spatiotemporal phenomena;Trajectory;Spatiotemporal data visualization;flow map;gravity model;kernel density estimation}, 
+doi={10.1109/TVCG.2017.2666146}, 
+ISSN={1077-2626}, 
+month={March},
+}
+
+@ARTICLE{466721, 
+author={E. Roytman and C. Gotsman}, 
+journal={IEEE Transactions on Visualization and Computer Graphics}, 
+title={Dynamic color quantization of video sequences}, 
+year={1995}, 
+volume={1}, 
+number={3}, 
+pages={274-286}, 
+keywords={colour graphics;image sequences;multimedia computing;quantisation (signal);24 bit image sequences;adaptive color quantization;color representatives;colormap design;colormap filling;colormaps;consecutive colormaps;dynamic color quantization;dynamic quantization;hi fidelity 8 bit imagery;medium range workstations;minimal computational cost;multimedia applications;near real time;quantizer mapping;representative assignment;standard color quantization tasks;video sequences;Algorithm design and analysis;Color;Computer displays;Costs;Heuristic algorithms;Image generation;Image resolution;Quantization;Robustness;Video sequences}, 
+doi={10.1109/2945.466721}, 
+ISSN={1077-2626}, 
+month={Sep},
+}
+
+IEEE Computer Graphics and Applications (CG&A)
+
+@ARTICLE{8103324, 
+author={V. M. Manghisi and M. Fiorentino and M. Gattullo and A. Boccaccio and V. Bevilacqua and G. L. Cascella and M. Dassisti and A. E. Uva}, 
+journal={IEEE Computer Graphics and Applications}, 
+title={Experiencing the Sights, Smells, Sounds, and Climate of Southern Italy in VR}, 
+year={2017}, 
+volume={37}, 
+number={6}, 
+pages={19-25}, 
+keywords={computer graphics;travel industry;virtual reality;Southern Italy;VR;interactive computer graphics;tourism agencies;tourism appeal;tourism marketing;virtual reality;Man-machine systems;Meteorology;Mobile communication;Olfactory;Three-dimensional displays;User interfaces;Videos;Virtual environments;Visualization;computer graphics;gesture controls;human-machine interface;multisensory virtual environment;natural user interfaces}, 
+doi={10.1109/MCG.2017.4031064}, 
+ISSN={0272-1716}, 
+month={November},
+}
+
+@ARTICLE{376602, 
+author={D. Sims}, 
+journal={IEEE Computer Graphics and Applications}, 
+title={At Oak Ridge, a car crash on the World Wide Web}, 
+year={1995}, 
+volume={15}, 
+number={3}, 
+pages={16-18}, 
+keywords={Internet;automobiles;computer animation;digital simulation;information retrieval;internetworking;online front-ends;parallel machines;research and development management;Ford Tauruses;HPCC community;High Performance Computing and Communications initiative;Intel Paragon;Oak Ridge National Laboratory;World Wide Web;animations;car crash;external communication;federal government agencies;finite element model code;general public;hyperlink capabilities;massively parallel computer;national labs;offset crash;parallel machine;project partners;researchers;simulation;Computational modeling;Concurrent computing;Finite element methods;Laboratories;Parallel machines;Protection;Supercomputers;Vehicle crash testing;Vehicles;Web sites}, 
+doi={10.1109/38.376602}, 
+ISSN={0272-1716}, 
+month={May},
+}
+
+
+ACM SIGGRAPH Computer Graphics (conference proceedings only, published as an ACM TOG issue)
+
+@article{Khungurn:2017:FRF:3130800.3130829,
+ author = {Khungurn, Pramook and Wu, Rundong and Noeckel, James and Marschner, Steve and Bala, Kavita},
+ title = {Fast Rendering of Fabric Micro-appearance Models Under Directional and Spherical Gaussian Lights},
+ journal = {ACM Trans. Graph.},
+ issue_date = {November 2017},
+ volume = {36},
+ number = {6},
+ month = nov,
+ year = {2017},
+ issn = {0730-0301},
+ pages = {232:1--232:15},
+ articleno = {232},
+ numpages = {15},
+ url = {http://doi.acm.org/10.1145/3130800.3130829},
+ doi = {10.1145/3130800.3130829},
+ acmid = {3130829},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {cloth, precomputed radiance transfer, rendering},
+} 
+
+@inproceedings{Draves:2007:ES:1281740.1281742,
+ author = {Draves, Scott},
+ title = {Electric Sheep},
+ booktitle = {ACM SIGGRAPH 2007 Computer Animation Festival},
+ series = {SIGGRAPH '07},
+ year = {2007},
+ isbn = {978-1-4503-1829-7},
+ location = {San Diego, California},
+ pages = {10--},
+ url = {http://doi.acm.org/10.1145/1281740.1281742},
+ doi = {10.1145/1281740.1281742},
+ acmid = {1281742},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
+
+
+Computers and Graphics (C&G)
+
+@article{LEE20181,
+title = "Heuristic misfit reduction: A programmable approach for 3D garment fit customization",
+journal = "Computers & Graphics",
+volume = "71",
+pages = "1 - 13",
+year = "2018",
+issn = "0097-8493",
+doi = "https://doi.org/10.1016/j.cag.2017.10.004",
+url = "http://www.sciencedirect.com/science/article/pii/S009784931730170X",
+author = "Wonseop Lee and Hyeong-Seok Ko",
+keywords = "Clothing simulation, Fit customization, Pattern-making, Computer animation"
+}
+
+@article{IP2006903,
+title = "A 3D object classifier for discriminating manufacturing processes",
+journal = "Computers & Graphics",
+volume = "30",
+number = "6",
+pages = "903 - 916",
+year = "2006",
+issn = "0097-8493",
+doi = "https://doi.org/10.1016/j.cag.2006.08.013",
+url = "http://www.sciencedirect.com/science/article/pii/S0097849306001464",
+author = "Cheuk Yiu Ip and William C. Regli",
+keywords = "3D search, Shape recognition, Shape matching, Solid model databases"
+}
+
+
+Computer Graphics Forum (CGF)
+
+@article{12318894020170501,
+Abstract = {Light painting is an artform where a light source is moved during a long-exposure shot, creating trails resembling a stroke on a canvas. It is very difficult to perform because the light source needs to be moved at the intended speed and along a precise trajectory. Additionally, images can be corrupted by the person moving the light. We propose computational light painting, which avoids such artifacts and is easy to use. Taking a video of the moving light as input, a virtual exposure allows us to draw the intended light positions in a post-process. We support animation, as well as 3D light sculpting, with high-quality results. [ABSTRACT FROM AUTHOR]},
+Author = {Salamon, Nestor Z. and Lancelle, Marcel and Eisemann, Elmar},
+ISSN = {01677055},
+Journal = {Computer Graphics Forum},
+Keywords = {LIGHT sources, ANIMATION (Cinematography), ARRAY processing, DIGITAL cameras, Categories and Subject Descriptors (according to ACM CCS), I.3.4 [Computer Graphics]: Graphics Utilities-Paint systems, MAN Ray, 1890-1976},
+Number = {2},
+Pages = {1 - 8},
+Title = {Computational Light Painting Using a Virtual Exposure.},
+Volume = {36},
+URL = {https://umasslowell.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?direct=true&db=aph&AN=123188940&site=ehost-live},
+Year = {2017},
+}
+
+@article{2006938520060301,
+Abstract = {In this paper we propose a speed-up technique for a local automatic colour equalization operator derived from a model of the human vision system. This method is characterized by local and global filtering effects, that simultaneously achieve different equalization tasks e.g. performing colour and lightness constancy, realizing dynamic image data driven stretching, controlling the contrast. We describe a way to quickly create a filtering mapping function to perform the global component of the mapping. This method is based on singular value decomposition (SVD) applied to sampled and filtered points in the input image. Then, the local information is added computing the basic algorithm on a neighbourhood of each input pixel. A slight quality loss is the price that we have to pay for a speed-up of more than two orders of magnitude of the basic algorithm. We present the results on several images and discuss the efficiency and the drawbacks of the speed-up technique. [ABSTRACT FROM AUTHOR]},
+Author = {Artusi, A. and Gatta, C. and Marini, D. and Purgathofer, W. and Rizzi, A.},
+ISSN = {01677055},
+Journal = {Computer Graphics Forum},
+Keywords = {COLORS, VISION, LIGHT, MAPPINGS (Mathematics), DECOMPOSITION (Mathematics), applications, display algorithms, I.3.3. Computer Graphics: Speed-up Technique, Singular Value Decomposition (SVD), ACE, Local Filter, Colour Enhancement, Spatial Colour, I.4.1 Digitization and Image Capture: Quantization, Sampling, image display},
+Number = {1},
+Pages = {5 - 14},
+Title = {Speed-up Technique for a Local Automatic Colour Equalization Model.},
+Volume = {25},
+URL = {https://umasslowell.idm.oclc.org/login?url=http://search.ebscohost.com/login.aspx?direct=true&db=aph&AN=20069385&site=ehost-live},
+Year = {2006},
+}
+
+
+Visual Computer
+
+@Article{Magnenat-Thalmann2018,
+author="Magnenat-Thalmann, Nadia",
+title="Preface",
+journal="The Visual Computer",
+year="2018",
+month="Jan",
+day="01",
+volume="34",
+number="1",
+pages="3--3",
+issn="1432-2315",
+doi="10.1007/s00371-017-1457-7",
+url="https://doi.org/10.1007/s00371-017-1457-7"
+}
+
+@Article{Cohen-Steiner2004,
+author="Cohen-Steiner, David
+and Da, Frank",
+title="A greedy Delaunay-based surface reconstruction algorithm",
+journal="The Visual Computer",
+year="2004",
+month="Apr",
+day="01",
+volume="20",
+number="1",
+pages="4--16",
+abstract="In this paper, we present a new greedy algorithm for surface reconstruction from unorganized point sets. Starting from a seed facet, a piecewise linear surface is grown by adding Delaunay triangles one by one. The most plausible triangles are added first and in such a way as to prevent the appearance of topological singularities. The output is thus guaranteed to be a piecewise linear orientable manifold, possibly with boundary. Experiments show that this method is very fast and achieves topologically correct reconstruction in most cases. Moreover, it can handle surfaces with complex topology, boundaries, and nonuniform sampling. ",
+issn="1432-2315",
+doi="10.1007/s00371-003-0217-z",
+url="https://doi.org/10.1007/s00371-003-0217-z"
+}
