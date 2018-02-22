@@ -1,0 +1,479 @@
+<!-- https://codepen.io/sdvg/pen/oFACy-->
+<!-- https://en.wikipedia.org/wiki/Bresenham's_line_algorithm -->
+<!DOCTYPE html >
+
+<html lang="en">
+  <head>
+    
+  <title>
+Assignment I
+  </title>
+  <style>
+h1 {
+  color: gold;
+  text-align: center;
+  background: black;
+  border-radius: 25px;
+  margin-right: 30%;
+  margin-left: 30%;
+}
+
+body {
+  background: navy;
+}
+
+canvas {
+  background: white;
+  outline: cyan 3px solid;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+
+p {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+h2 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+h3 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+button {
+  border: 5px solid #0a1010;
+  border-radius: 10px;
+}
+
+#line {
+  background-color: red;
+}
+
+#circle {
+  background-color: #FFBC00;
+}
+
+#ellipse {
+  background-color: #ffff00;
+}
+
+#rectangle {
+  background-color: chartreuse;
+}
+
+#polygon {
+  background-color: cyan;
+}
+
+#end {
+  background-color: cyan;
+}
+
+
+#polyline {
+  background-color: magenta;
+}
+
+#clear {
+  background-color: white;
+}
+
+#red {
+  background-color: red;
+}
+
+#orange {
+  background-color: orange;
+}
+
+#yellow {
+  background-color: yellow;
+}
+
+#green {
+  background-color: green;
+}
+
+#blue {
+  background-color: blue;
+}
+
+#purple {
+  background-color: purple;
+}
+
+#black {
+  background-color: black;
+  color: white;
+}
+
+  </style>
+  
+   </head>
+ <body>
+  <h1>
+   Computer Graphics<br /> Programming HW1
+  </h1>
+
+  <input type="text" id="color" value="blue" hidden></input>
+  <input type="number" id="line" hidden></input>
+
+  <canvas onclick="showCoords(event)" id="myCanvas" width="600" height="300" style="border:1px solid #000000;">
+   Your browser does not support the HTML5 canvas tag.
+  </canvas>
+
+  <h2>
+    <button id="line" type="button" onclick="choose(1)">LINE</button>
+    <button id="circle" type="button" onclick="choose(2)">CIRCLE</button>
+    <button id="ellipse" type="button" onclick="choose(3)">ELLIPSE</button>
+    <button id="rectangle" type="button" onclick="choose(4)">RECTANGLE</button>
+    <button id="polygon" type="button" onclick="choose(5)">POLYGON</button>
+    <button id="polyline" type="button" onclick="choose(6)">POLYLINE</button>
+    <button id="clear" type="button" onclick="clear()">CLEAR</button>
+  </h2>
+  <h2><button id="end" type="button" onclick="end()">END<br>POLYGON</button></h2>
+
+  <h3>
+    <button id="red" type="button" onclick="colors('red')">RED</button>
+    <button id="orange" type="button" onclick="colors('orange')">ORANGE</button>
+    <button id="yellow" type="button" onclick="colors('yellow')">YELLOW</button>
+    <button id="green" type="button" onclick="colors('green')">GREEN</button>
+    <button id="blue" type="button" onclick="colors('blue')">BLUE</button>
+    <button id="purple" type="button" onclick="colors('purple')">PURPLE</button>
+    <button id="black" type="button" onclick="colors('black')">BLACK</button>
+
+  </h3>
+
+  <p id="demo"></p>
+
+  <script>
+
+var px0 = 0, px1 = 0, px2 = 0, px3 = 0, px4 = 0, px5 = 0, px6 = 0, px7 = 0;
+var py0 = 0, py1 = 0, py2 = 0, py3 = 0, py4 = 0, py5 = 0, py6 = 0, py7 = 0;
+var shape; 
+var color = 'blue';
+var flag = 100;
+var flag_polygon = 0;
+var offs = document.getElementById("myCanvas");
+
+var canvas = document.querySelector('canvas')
+var ctx = canvas.getContext('2d');
+ctx.fillStyle = color;
+
+function colors(n) {
+	if(n == 'red' || n == 'orange' || n == 'yellow' || n == 'green' || n == 'blue' || n == 'purple' || n == 'black') {
+		ctx.fillStyle = n;
+	}
+	else
+		ctx.fillStyle = 'blue';
+}
+
+var mouseClicked = false;
+var mouseReleased = true;
+document.addEventListener("click", onMouseClick, false);
+function onMouseClick(e) {
+	mouseClicked = !mouseClicked;
+	
+}
+
+function getMousePos(canvas, evt) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+		x: evt.clientX - rect.left,
+		y: evt.clientY - rect.top
+	};
+}
+
+
+
+	
+
+/* clear */
+document.getElementById('clear').addEventListener('click', function() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+}, false);
+
+var DrawPixel = function (x, y) {
+	ctx.fillRect(x, y, 1, 1);
+}
+
+/* line */
+function line(x0, y0, x1, y1){
+   var dx = Math.abs(x1-x0);
+   var dy = Math.abs(y1-y0);
+   var sx = (x0 < x1) ? 1 : -1;
+   var sy = (y0 < y1) ? 1 : -1;
+   var err = dx-dy;
+
+   while(true){
+     DrawPixel(x0,y0);  // Do what you need to for this
+
+     if ((x0==x1) && (y0==y1)) {
+	break;
+     }
+
+     var e2 = 2*err;
+     if (e2 > (-dy)){ 
+	err -= dy; x0  += sx; 
+     }
+     if (e2 < dx){ 
+	err += dx; y0  += sy;
+     }
+   }
+}
+
+
+
+/* circle*/
+var circle = function (x0, y0, radius) {
+  var x = radius;
+  var y = 0;
+  var radiusError = 1 - x;
+  
+  while (x >= y) {
+    DrawPixel(x + x0, y + y0);
+    DrawPixel(y + x0, x + y0);
+    DrawPixel(-x + x0, y + y0);
+    DrawPixel(-y + x0, x + y0);
+    DrawPixel(-x + x0, -y + y0);
+    DrawPixel(-y + x0, -x + y0);
+    DrawPixel(x + x0, -y + y0);
+    DrawPixel(y + x0, -x + y0);
+    y++;
+    
+    if (radiusError < 0) {
+        radiusError += 2 * y + 1;
+    }
+    else {
+        x--;
+        radiusError+= 2 * (y - x + 1);
+    }
+  }
+};
+
+/* ellipse */
+
+function ellipsePlotPoints (xc, yc,  x,  y)
+{
+    DrawPixel (xc + x, yc + y);
+    DrawPixel (xc - x, yc + y);
+    DrawPixel (xc + x, yc - y);
+    DrawPixel (xc - x, yc - y);
+}
+
+function ellipse(xc, yc,  a,  b)
+{
+    var a2 = a * a;
+    var b2 = b * b;
+    var twoa2 = 2 * a2;
+    var twob2 = 2 * b2;
+    var p;
+    var x = 0;
+    var y = b;
+    var px = 0;
+    var py = twoa2 * y;
+
+    /* Plot the initial point in each quadrant. */
+    ellipsePlotPoints (xc, yc, x, y);
+
+    /* top and bottom of ellipse */
+    p = Math.round (b2 - (a2 * b) + (0.25 * a2));
+    while (px < py) {
+        x++;
+        px += twob2;
+        if (p < 0)
+        p += b2 + px;
+        else {
+        y--;
+        py -= twoa2;
+        p += b2 + px - py;
+        }
+        ellipsePlotPoints (xc, yc, x, y);
+    }
+
+    /* left and right, requires top and bottom to function */
+    p = Math.round (b2 * (x+0.5) * (x+0.5) + a2 * (y-1) * (y-1) - a2 * b2);
+    while (y > 0) {
+        y--;
+        py -= twoa2;
+        if (p > 0)
+        p += a2 - py;
+        else {
+        x++;
+        px += twob2;
+        p += a2 - py + px;
+        }
+        ellipsePlotPoints (xc,yc, x, y);
+    }
+}
+
+function rectangle(x0, y0, x1, y1) {
+/* line(x0, y0, x1, y1) */
+
+	line(x0, y0, x1, y0);
+	line(x1, y0, x1, y1);
+	line(x1, y1, x0, y1);
+	line(x0, y1, x0, y0);	
+}
+
+
+function choose(n) {
+	px0 = 0, px1 = 0, px2 = 0, px3 = 0, px4 = 0, px5 = 0, px6 = 0, px7 = 0;
+	py0 = 0, py1 = 0, py2 = 0, py3 = 0, py4 = 0, py5 = 0, py6 = 0, py7 = 0;
+
+	shape = n;
+}
+
+line(100,100,200,50);
+circle(120, 120, 100);
+ellipse(300, 150, 200, 100);
+rectangle(100, 100, 300, 200);
+
+function showCoords(event) {
+	
+
+	var x = event.clientX;
+	var y = event.clientY;
+	
+	switch (shape) {
+	default: /*line done*/
+		if(px1 == 0 && py1 == 0 && (flag != 0 || flag != 1)) {
+			px1 = event.clientX;
+			py1 = event.clientY;
+		}
+		
+		if(flag == 1) {
+			line(px1 - offs.offsetLeft, py1 - offs.offsetTop, x - offs.offsetLeft, y - offs.offsetTop);
+			flag = 0;
+		}
+		else {
+			flag = 1;
+		}
+		px1 = x;
+		py1 = y;
+		flag == 1;
+		break;
+
+	case 2: /*circle done*/
+		if(px2 == 0 && py2 == 0 && (flag != 2 || flag != 20)) {
+			px2 = event.clientX;
+			py2 = event.clientY;
+		}
+		
+		if(flag == 20) {
+			var calc1 = Math.pow(((x - offs.offsetLeft) - (px2 - offs.offsetLeft)), 2);
+			var calc2 = Math.pow(((y - offs.offsetTop) - (py2 - offs.offsetTop)), 2);
+			circle(px2 - offs.offsetLeft, py2 - offs.offsetTop, Math.sqrt( calc1 + calc2));
+			flag = 2;
+		}
+		else {
+			flag = 20;
+		}
+		px2 = x;
+		py2 = y;
+		flag == 20;
+
+		break;
+
+	case 3: /*ellipse done*/
+		if(px3 == 0 && py3 == 0 && (flag != 30 || flag != 300)) {
+			px3 = event.clientX;
+			py3 = event.clientY;
+		}
+		
+		if(flag == 300) {
+			
+			ellipse(px3 - offs.offsetLeft, py3 - offs.offsetTop, Math.abs((x - offs.offsetLeft) - (px3 - offs.offsetLeft)), Math.abs((y - offs.offsetTop) - (py3 - offs.offsetTop)));
+			flag = 30;
+		}
+		else {
+			flag = 300;
+		}
+		px3 = x;
+		py3 = y;
+		flag == 300;
+
+		break;
+
+	case 4: /*rectangle done*/
+		if(px4 == 0 && py4 == 0 && (flag != 3 || flag != 4)) {
+			px4 = event.clientX;
+			py4 = event.clientY;
+		}
+		
+		if(flag == 4) {
+			rectangle(px4 - offs.offsetLeft, py4 - offs.offsetTop, x - offs.offsetLeft, y - offs.offsetTop);
+			flag = 3;
+		}
+		else {
+			flag = 4;
+		}
+		px4 = x;
+		py4 = y;
+		flag == 4;
+
+		break;
+
+	case 5: /*polygon*/
+		
+		if(px5 == 0 && py5 == 0) {
+			px5 = event.clientX;
+			py5 = event.clientY;
+			px0 = event.clientX;
+			py0 = event.clientY;
+
+		}/*
+		if(flag_polygon == 0) {
+			line(px0 - offs.offsetLeft, py0 - offs.offsetTop, x - offs.offsetLeft, y - offs.offsetTop);
+		}*/
+		line(px5 - offs.offsetLeft, py5 - offs.offsetTop, x - offs.offsetLeft, y - offs.offsetTop);
+		
+		px5 = x;
+		py5 = y;
+		px7 = x;
+		py7 = y;
+		flag = 0;
+
+
+		break;
+
+	case 6: /*polyline done*/
+		if(px6 == 0 && py6 == 0) {
+			px6 = event.clientX;
+			py6 = event.clientY;
+		}
+
+		line(px6 - offs.offsetLeft, py6 - offs.offsetTop, x - offs.offsetLeft, y - offs.offsetTop);
+		px6 = x;
+		py6 = y;
+		flag = 0;
+		break;
+	}
+
+	var coors = "X coors: " + x + ", Y coors: " + y;
+	document.getElementById("demo").innerHTML = coors;
+}
+
+function end() {
+	line(px0 - offs.offsetLeft, py0 - offs.offsetTop, px7 - offs.offsetLeft, py7 - offs.offsetTop);
+
+}
+
+  </script>
+
+
+
+ </body>
+</html>
