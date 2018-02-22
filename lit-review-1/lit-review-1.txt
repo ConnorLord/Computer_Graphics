@@ -1,0 +1,138 @@
+Connor Lord
+Computer Graphics I
+Literature Review 1
+Date: 2/20/18
+
+	For this assignment we were to read two technical papers and write a 
+summary on the two papers. The primary paper that we had to pick, had to be 
+from a proper source as outligned by the assignment, and the second paper had 
+to be from the those cited in the bibliography of the primary paper. The review 
+of these two papers must have attention paid to how these two papers related to 
+each other. A particular frustration of this assignment was that not all of the 
+sources in the primary paper were available through Umass:Lowell services such as 
+the library, so the selection was tricky at best.
+	The assignment states that it is best to describe the secondary paper 
+first, as it will be easier to fit it into the primary paper once that is done. 
+The secondary paper that was chosen for this assignment was 'Rendering Synthetic 
+Objects into Legacy Photographs'. This article is about a method of inserting 
+synthetic objects into existing photographs without prior knowledge of the details 
+regarding the photograph. Examples posed in the article include a picture of a 
+billairds table in a bar, where virtual pool balls are added to the table; as well 
+as a picture of nearly empty room, where a statue has been added to the room. 
+	The application of this method in for projects that require the use of 
+inserting three dimensional props into images and videos. So the industries that 
+would be interested in this method are movies, video games, as well as content 
+creation. The current processes of adding objects to images in a way that looks 
+real is painstaking and requires expertise. This process has surprisingly few 
+steps, and more inportantly, does not require the use of access to the scene, 
+special equipment, multiple photographs, time lapses, or any other aids. Only the 
+use of a small amount of annotation to recover a small amount of geometry and the 
+position, shape, and intensity of light sources contained in the image. This last 
+bit on intensity of light will be the important part for the other paper. 
+	The process is as follows. First an imput image is selected. Then initial 
+geometry is estimated on the image and user annotates other necessary geometry. 
+Then the position of light sources are annotated by the user. From all this, a 
+3d scene of the image is computed, including light models, surface materials, and 
+camera parameters. The user then places virtual three dimensionnal objects into 
+this 3d mockup of the image. Then the placed objects are rendered using the 
+details of the original image. Finally the rendered version of the objects are 
+inserted into the original image. This gives the proper illusion that the objects 
+could have been a part of the original image.
+	An important part of this process is it's interior lighting algorithm. To 
+accurately create lighting effects and proper shadows, a few steps must be taken. 
+First the image has its contents modeled by geometry. This is used to decompose 
+the image into albedo and direct reflected light filtering. The user defines the 
+initial lighting factors of the scene, and the light parameters are estimated 
+from this. Then using optimized light parameters, objects that are added to the 
+scene can then be given optimal shading to emulate being a part of the scene.
+	The last paragraph is important, because it directly relates to my primary 
+article. I chose 'A Context-Aware Method for Authentically Simulating Outdoors 
+Shadows for Mobile Augmented Reality' as my recent primary paper to review for 
+this assignment. This paper is similar to the secondary one as they both deal with 
+simulating synthetic objects into photographs or videos. The big difference 
+however, is what is being synthesized into the images. While my secondary article 
+is about adding virtual objects into photographs in a way that looks realistic, 
+my primary article focuses on the shading and shadow aspect of this, and has a 
+more effective method of simulating how the shadows of an object would look, if 
+that object were actually in the image. A big part of the paper is discrediting 
+previous methods of simulating shadows on/from synthetic objects.
+	The objective of this paper is to create a method of simulating shadows 
+for use in augmented reality technology. This is useful to many industries, such 
+as architectural, engineering, and entertainment. So the big difference of this 
+paper versus the last one, is that all of the technology for placing a virtual 
+object into a photo or video is already in use to an effective degree, this paper 
+merely proposing a method for accurately creating shadows in a way that looks more 
+realistic than ever before, but also simulates shadows in a way that is nearly 
+exactly the same as how shadows would appear based on location, time of day, and 
+weather conditions.
+	Aside from software, the only tool that is required to use this method is 
+a smartphone, as current smartphones contain a variety of tools that can be used 
+for this method. These tools are an internet connection, an accelerometer, a 
+gyroscope, a global positioning system, and an ambient light sensor. The process 
+is simple; first when the software is going to be used when a picture or a video 
+containing a virtual object is going to be taken, a combination of the phone's 
+global position system, ambient light sensor, and the current date and time will 
+begin to reconstruct the sun's position and direction. Once that is done, using a 
+combination of this previously mentioned sensors and the weather API taken from 
+http://www.wunderground.com/, used to get an accurate reading of the current 
+weather, this API will send back one of three options for the current weather: 
+clear sky, partly cloudy sky, and cloudy sky. Using this information, the 
+illumanance parameters are estimated. With these parameters, the dynamic shadows 
+of virtual objects in the scene can then be calculated. This process is important, 
+because if a virtual object is only partly in shadow, then the shadows generated 
+will only be applied to the parts of the object that is not covered in shadow. 
+This stops the mistake of layering a shadow on a pre-existing shadow, and causing 
+the augmented shading from being too dark. 
+	From here, appropriate shadows can be rendered and give the synthetic 
+objects a more realistic look to them, and this shows signifigance in comparison 
+to the method mentioned in the other paper. The system described in the secondary 
+paper could only by used on static photographs, not videos; as well as only being 
+able to appropriately work indoors, where all light sources can be appropriately 
+estimated. The method from the primary paper however, can by used to calculate 
+shadows made by the sun, and can used to calculate dynamic shadows in three 
+dimensions. There are limitations to this method as well; currently this method is 
+not capable of correctly representing an object only halfway in the shade when 
+used without proper rendering software. Other limitations include the phone 
+recording the calculations needing to be under the same weather illuminance as the 
+scene being recorded, and the method only working correctly outdoors, whereas many 
+similar techniques are suited for the reverse.
+	All in all, both papers discuss methods of how to add realistic virtual 
+objects to scenes.  
+
+
+
+Sources Cited
+
+@ARTICLE{7867820, 
+author={J. Barreira and M. Bessa and L. Barbosa and L. Magalhães}, 
+journal={IEEE Transactions on Visualization and Computer Graphics}, 
+title={A Context-Aware Method for Authentically Simulating Outdoors Shadows for Mobile Augmented Reality}, 
+year={2018}, 
+volume={24}, 
+number={3}, 
+pages={1223-1231}, 
+keywords={Cameras;Clouds;Estimation;Lighting;Meteorology;Probes;Sun;Augmented reality;context-awareness;photometric registration;shadows coherence}, 
+doi={10.1109/TVCG.2017.2676777}, 
+ISSN={1077-2626}, 
+month={March},}
+
+@article{Karsch:2011:RSO:2070781.2024191,
+ author = {Karsch, Kevin and Hedau, Varsha and Forsyth, David and Hoiem, Derek},
+ title = {Rendering Synthetic Objects into Legacy Photographs},
+ journal = {ACM Trans. Graph.},
+ issue_date = {December 2011},
+ volume = {30},
+ number = {6},
+ month = dec,
+ year = {2011},
+ issn = {0730-0301},
+ pages = {157:1--157:12},
+ articleno = {157},
+ numpages = {12},
+ url = {http://doi.acm.org.umasslowell.idm.oclc.org/10.1145/2070781.2024191},
+ doi = {10.1145/2070781.2024191},
+ acmid = {2024191},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {computational photography, image-based rendering, light estimation, photo editing},
+} 
