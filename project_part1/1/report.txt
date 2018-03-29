@@ -1,0 +1,14 @@
+Connor Lord
+Computer Graphics I
+
+Final Project part 1-README
+
+Although there are many features that need to be implimented for the final project, for this first entry,
+I do not have any of them totally implimented. This is because due to my busy schedule, I had to commit a 
+good deal of time learning how to use OpenGl, so that I may have the skills to complete the rest of this 
+project. For this first report, all my webpage does is display a few rotating shapes that are colored. This 
+is the very simple first step to being able to implement all of the necessary features for this assignment. 
+To learn how to do this, I started following a simple tutorial that I found online at:
+http://learningwebgl.com/blog/?p=239
+which provided enough insight into how to start this project. This also why what I have is similar to lesson 
+3 of this tutorial, as I was simply following along, for now.

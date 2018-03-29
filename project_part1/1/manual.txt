@@ -1,0 +1,11 @@
+Connor Lord
+
+connor_lord@student.uml.edu
+
+Computer Graphics Final report week 1
+
+At this point in development, the only thing that is required to run this webpage is two javascripts files,
+that need to be included in the same directory that the html file is in. These files webgl-utils.js and 
+glMatrix-0.9.5.min.js were provided from a tutorial website that I was using to learn OpenGL called 
+http://learningwebgl.com/blog/?p=239. Nothing on the page is clickable at the moment, so nothing else is 
+necessary to use this webpage.
