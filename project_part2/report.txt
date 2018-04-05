@@ -1,0 +1,13 @@
+Connor Lord
+Computer Graphics I
+
+Final Project part 2-README
+
+Unlike my previous submission, which was a dead end, my submission for the second week 
+of the final project progress uses the open source javascript library three.js. This 
+library is an easier way to use WebGL to create 3d models in a browser page. At the 
+moment, I have one major feature implemented in my code, and that it the ability to 
+orient a camera around a model, which for now is just a cube. I am currently working 
+on how to have multiple views of the same object, from different angles. To do this, I 
+have been using the tutorials found at https://threejs.org/examples/ , the website that 
+the three.js library can be found from.

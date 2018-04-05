@@ -1,0 +1,12 @@
+Connor Lord
+
+connor_lord@student.uml.edu
+
+Computer Graphics Final report week 1
+
+At this point in development, the only thing that is required to run this webpage is the javascripts files 
+in my js libary from my main directory. From here there are a few things that can be used to operate the page. 
+By holding the left mouse button on the page, and then moving the mouse, the object on screen can then be 
+rotated around. The right mouse button will perform similarly, but will pan the page in the direction the 
+mouse is moving. The middle mouse button (scroll wheel) operates similarly as well, but is used for moving the 
+camera closer or farther away.
