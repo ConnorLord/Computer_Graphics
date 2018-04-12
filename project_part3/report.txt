@@ -1,0 +1,12 @@
+Connor Lord
+Computer Graphics I
+
+Final Project part 3-README
+
+My submission for the third week of the final project progress uses the open source 
+javascript library three.js. At the moment, I trying to incorporate two features into 
+my code, multiple views, and the ability to rotate the camera; to great diffulty... To 
+do this, I have been using the tutorials found at https://threejs.org/examples/ , the 
+website that the three.js library can be found from. I would like to get a lot more done 
+for this project in the coming weeks, I hope I have enough time. The html file is called 
+more_progress.html.
