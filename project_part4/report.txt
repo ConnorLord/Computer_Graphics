@@ -1,0 +1,13 @@
+Connor Lord
+Computer Graphics I
+
+Final Project part 3-README
+
+My submission for the fourth week of the final project progress uses the open source 
+javascript library three.js. At the moment, I have incorporated a few features into my 
+code, the abilty to have multiple views of an object, the ability to zoom into one of 
+the windows, as well as the ability to zoom and pan around the object. I have been trying 
+to incorporate the ability to draw on a canvas, which will then put the drawing onto the 
+sides of the object. Unfortunately I haven't been able to get this to work. I have been 
+using the tutorials found at https://threejs.org/examples/ , the website that the 
+three.js library can be found from. The html file is called more_progress.html.

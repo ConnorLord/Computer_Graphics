@@ -1,0 +1,13 @@
+Connor Lord
+
+connor_lord@student.uml.edu
+
+Computer Graphics Final report week 1
+
+My webpage has three windows, each showing a different view, where the first window 
+is interectable. The top of the page says that using the mouse, the user can rotate 
+the object by holding the left mouse button and dragging the mouse. The user can pan 
+the object around by doing the same process as rotate, except while holding the right 
+mouse button. By scrolling the mouse wheel, the user can zoom in and out from the object. 
+The canvas on the side of the screen can be drawn on, but unfortunately it's full 
+functionality is unfinished at this point.
