@@ -1,0 +1,27 @@
+Connor Lord
+
+connor_lord@student.uml.edu
+
+Computer Graphics Final report week 1
+
+My webpage has three windows, each showing a different view, where the first window 
+is interectable. The top of the page says that using the mouse, the user can rotate 
+the object by holding the left mouse button and dragging the mouse. The user can pan 
+the object around by doing the same process as rotate, except while holding the right 
+mouse button. By scrolling the mouse wheel, the user can zoom in and out from the object. 
+The canvas on the side of the screen can be drawn on, but unfortunately it's full 
+functionality is unfinished at this point. Transformation tools have been added. The three 
+main tools are a translation tool, a rotation tool, and a scaling tool. These three 
+features are toggled between each other, by pressing "W" for translation, "E" for rotation, 
+and "R" for scaling, the default tool is translation. These tools appear on each of the 
+three views on the object. The tools consist of three red, blue, and green objects for 
+each feature, each of which effect one of the three dimensions of the object. To use these 
+tools, simply move the cursor to the center of the screen, until one of these tools lights 
+up on all three views, then click and hold the left mouse button, and move the mouse to 
+effect the object. The translation tool moves the in one of the three dimensions. The 
+rotation tool rotates the object around one of the three dimensions. The scaling tool will 
+stretch or shrink the object along one of the three dimensions. Pressing "+" and "-" will 
+increase and decrease the size of tools for ease of use. Pressing "Q" will toggle whether 
+the tools are effected by the transformations, or if the tools will always face the user. 
+Holding "Ctrl" will cause the transformations applied to only work in increments of the 
+visible grid on the screen.
