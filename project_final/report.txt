@@ -1,0 +1,20 @@
+Connor Lord
+Computer Graphics I
+
+Final Project part 3-README
+
+My submission for the fifth week of the final project progress uses the open source 
+javascript library three.js. At the moment, I have incorporated a few features into my 
+code, these abilities are transform controls. My object can now be translated, rotated, 
+and scaled. I also have the ability to toggle if the tools being used for these features 
+will remain stationary to the screen, or be transformed with the object i.e. if the 
+object is rotated the tool can either rotate with the object, or remain stationary. This 
+feature does not apply to the scale feature. A feature to make the tools larger or smaller 
+to the object has also been incorporated, so if the object is zoomed in on, the tools can 
+be shrunk so that size isn't an issue. Finally there is the ablity to have the object's 
+transformation features snap to a grid, so that if the object is translated, it will only 
+move in increments of the grid in view. I had been trying to incorporate the ability to 
+draw on a canvas, which will then put the drawing onto the sides of the object. 
+Unfortunately I haven't been able to get this to work, so this feature has been scrapped. 
+I have been using the tutorials found at https://threejs.org/examples/ , the website that 
+the three.js library can be found from. The html file is called more_progress.html.

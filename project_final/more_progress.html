@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Computer Graphics final project</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				color: #000;
+				font-family:Monospace;
+				font-size:13px;
+				text-align:center;
+				font-weight: bold;
+				background-color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#drawing-canvas {
+				position: absolute;
+				background-color: #000000;
+				top: 0px;
+				right: 0px;
+				z-index: 3000;
+				cursor: crosshair;
+			}
+
+			#info {
+				color:#000;
+				position: absolute;
+				top: 0px; width: 100%;
+				padding: 5px;
+			}
+			a {
+				color: #0080ff;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="container"></div>
+		<div id="info">
+		MOVE mouse &amp;  LEFT CLICK: rotate, MIDDLE CLICK: zoom, RIGHT CLICK: pan<br>
+		"W" translate | "E" rotate | "R" scale | "+" increase size | "-" decrease size<br />
+		Press "Q" to toggle world/local space, keep "Ctrl" down to snap to grid
+		</div>
+
+		<canvas hidden id="drawing-canvas" height="128" width="128"></canvas>
+		
+		<script src="js/three.min.js"></script>
+		<script src="js/TrackballControls.js"></script>
+		<script src="js/Detector.js"></script>
+		<script src="js/stats.min.js"></script>
+		<script src="js/TransformControls.js"></script>
+
+		<script>
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+			var container, stats, material;
+			var controls, control;
+			var views, scene, renderer;
+			var mouseX = 0, mouseY = 0;
+			var windowWidth, windowHeight;
+			var drawStartPos = new THREE.Vector2();
+			var views = [
+				{
+					//top right
+					left: 0.5,
+					top: 0,
+					width: 0.5,
+					height: 0.5,
+					background: new THREE.Color( 0.5, 0.7, 0.7 ),
+					eye: [ 1400, 800, 1400 ],
+					up: [ 0, 1, 0 ],
+					fov: 60,
+					updateCamera: function ( camera, scene, mouseX, mouseY ) {
+					  camera.position.y -= mouseX * 0.05;
+					  camera.position.y = Math.max( Math.min( camera.position.y, 1600 ), -1600 );
+					  camera.lookAt( scene.position );
+					}
+				},
+				{
+					//bottom right
+					left: 0.5,
+					top: 0.5,
+					width: 0.5,
+					height: 0.5,
+					background: new THREE.Color( 0.7, 0.5, 0.5 ),
+					eye: [ 0, 1800, 0 ],
+					up: [ 0, 0, 1 ],
+					fov: 45,
+					
+					updateCamera: function ( camera, scene, mouseX, mouseY ) {
+					  camera.position.x -= mouseX * 0.05;
+					  camera.position.x = Math.max( Math.min( camera.position.x, 2000 ), -2000 );
+					  camera.lookAt( camera.position.clone().setY( 0 ) );
+					}
+					
+				},
+				{
+
+					//top left
+					left: 0,
+					top: 0,
+					width: 0.5,
+					height: 0.5,
+					background: new THREE.Color( 0.5, 0.5, 0.7 ),
+					eye: [ 0, 300, 1800 ],
+					up: [ 0, 1, 0 ],
+					fov: 30,
+					updateCamera: function ( camera, scene, mouseX, mouseY ) {
+					  //camera.position.x += mouseX * 0.05;
+					  //camera.position.x = Math.max( Math.min( camera.position.x, 2000 ), -2000 );
+					  camera.lookAt( scene.position );
+					}
+
+				}
+			];
+
+			init();
+			
+			setupCanvasDrawing();
+			animate();
+
+			function init() {
+				container = document.getElementById( 'container' );
+				for (var ii =  0; ii < views.length; ++ii ) {
+					var view = views[ii];
+					var camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
+					camera.position.fromArray( view.eye );
+					camera.up.fromArray( view.up );
+					view.camera = camera;
+				}
+
+				controls = new THREE.TrackballControls( camera );
+				controls.rotateSpeed = 2.0;
+				controls.zoomSpeed = 1.2;
+				controls.panSpeed = 0.8;
+				controls.noZoom = false;
+				controls.noPan = false;
+				controls.staticMoving = true;
+				controls.dynamicDampingFactor = 0.3;
+				controls.keys = [ 65, 83, 68 ];
+				controls.addEventListener( 'change', render );				
+
+
+				scene = new THREE.Scene();
+				scene.add( new THREE.GridHelper( 1000, 10 ) );
+				var light = new THREE.DirectionalLight( 0xffffff );
+				light.position.set( 0, 0, 1 );
+				scene.add( light );
+
+				var light = new THREE.DirectionalLight( 0xffffff );
+				light.position.set( 1, 1, 1 );
+				scene.add( light );
+
+				var light = new THREE.DirectionalLight( 0x002288 );
+				light.position.set( -1, -1, -1 );
+				scene.add( light );
+
+				var light = new THREE.AmbientLight( 0x222222 );
+				scene.add( light );
+
+				// shadow
+				/*
+				var canvas = document.createElement( 'canvas' );
+				canvas.width = 128;
+				canvas.height = 128;
+				var context = canvas.getContext( '2d' );
+				var gradient = context.createRadialGradient( canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, canvas.width / 2 );
+				gradient.addColorStop( 0.1, 'rgba(0,0,0,0.15)' );
+				gradient.addColorStop( 1, 'rgba(0,0,0,0)' );
+				context.fillStyle = gradient;
+				context.fillRect( 0, 0, canvas.width, canvas.height );
+				*/
+				var faceIndices = [ 'a', 'b', 'c' ];
+				var color, f, f2, f3, p, vertexIndex,
+					radius = 200,
+					geometry = new THREE.BoxGeometry(200,200,200 );
+				/*	
+				for ( var i = 0; i < geometry.faces.length; i ++ ) {
+					f  = geometry.faces[ i ];
+
+					for( var j = 0; j < 3; j++ ) {
+						vertexIndex = f[ faceIndices[ j ] ];
+						p = geometry.vertices[ vertexIndex ];
+						color = new THREE.Color( 'blue' );
+
+						//color
+						color.setHSL( ( p.y / radius + 1 ) / 2, 1.0, 0.5 );
+						f.vertexColors[ j ] = color;
+
+					}
+				}
+				*/
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+				stats = new Stats();
+				document.body.appendChild( stats.dom );
+
+
+				//control for transforming
+				control = new THREE.TransformControls( camera, renderer.domElement );
+				control.addEventListener( 'change', render );
+
+				var mesh, wireframe;
+				material = new THREE.MeshBasicMaterial();
+				var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: true, transparent: true } );
+				mesh = new THREE.Mesh( geometry, material );
+
+				scene.add( mesh );
+				control.attach( mesh );
+				scene.add( control );
+
+				
+				window.addEventListener( 'resize', onWindowResize, false );
+				//document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+				window.addEventListener( 'keydown', function ( event ) {
+					switch ( event.keyCode ) {
+						case 81: // Q
+							control.setSpace( control.space === "local" ? "world" : "local" );
+							break;
+						case 17: // Ctrl
+							control.setTranslationSnap( 100 );
+							control.setRotationSnap( THREE.Math.degToRad( 15 ) );
+							break;
+						case 87: // W
+							control.setMode( "translate" );
+							break;
+						case 69: // E
+							control.setMode( "rotate" );
+							break;
+						case 82: // R
+							control.setMode( "scale" );
+							break;
+						case 187:
+						case 107: // +, =, num+
+							control.setSize( control.size + 0.1 );
+							break;
+						case 189:
+						case 109: // -, _, num-
+							control.setSize( Math.max( control.size - 0.1, 0.1 ) );
+							break;
+					}
+				});
+
+				window.addEventListener( 'keyup', function ( event ) {
+					switch ( event.keyCode ) {
+						case 17: // Ctrl
+							control.setTranslationSnap( null );
+							control.setRotationSnap( null );
+							break;
+					}
+				});
+
+
+				render();
+			}
+
+
+			function setupCanvasDrawing() {
+				// get canvas and context
+				var drawingCanvas = document.getElementById( 'drawing-canvas' );
+				var drawingContext = drawingCanvas.getContext( '2d' );
+
+				// draw white background
+				drawingContext.fillStyle = "#FFFFFF";
+				drawingContext.fillRect( 0, 0, 128, 128 );
+
+				// set canvas as material.map (this could be done to any map, bump, displacement etc.)
+				material.map = new THREE.Texture( drawingCanvas );
+
+				// need to flag the map as needing updating.
+				material.map.needsUpdate = true;
+
+				// set the variable to keep track of when to draw
+				var paint = false;
+
+				// add canvas event listeners
+				drawingCanvas.addEventListener( 'mousedown', function( e ) {
+					paint = true;
+					drawStartPos.set( e.offsetX, e.offsetY );
+				} );
+				drawingCanvas.addEventListener( 'mousemove', function( e ) {
+					if(paint){
+						draw( drawingContext, e.offsetX, e.offsetY );
+					}
+				} );
+				drawingCanvas.addEventListener( 'mouseup', function( e ) {
+					paint = false;
+				} );
+				drawingCanvas.addEventListener( 'mouseleave', function( e ) {
+					paint = false;
+				} );
+			}
+
+			function draw( drawContext, x, y ) {
+				drawContext.moveTo( drawStartPos.x, drawStartPos.y );
+				drawContext.strokeStyle = '#000000';
+				drawContext.lineTo( x, y );
+				drawContext.stroke();
+				// reset drawing start position to current position.
+				drawStartPos.set( x, y );
+				// need to flag the map as needing updating.
+				material.map.needsUpdate = true;
+			}
+
+			function onWindowResize() {
+				for ( var ii = 0; ii < views.length; ++ii ) {
+					var view = views[ii];
+					var camera = view.camera;
+					camera.aspect = window.innerWidth / window.innerHeight;
+					camera.updateProjectionMatrix();
+					renderer.setSize( window.innerWidth, window.innerHeight );
+					controls.handleResize();
+					render();
+				}
+			}
+
+			function updateSize() {
+				if ( windowWidth != window.innerWidth || windowHeight != window.innerHeight ) {
+					windowWidth  = window.innerWidth;
+					windowHeight = window.innerHeight;
+					renderer.setSize ( windowWidth, windowHeight );
+				}
+			}
+
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+				stats.update();
+
+				controls.update();
+			}
+
+
+
+			function render() {
+				updateSize();
+				control.update();
+
+				var view = views[0];
+				var camera = view.camera;
+				view.updateCamera( camera, scene, mouseX, mouseY );
+				var left   = Math.floor( windowWidth  * view.left );
+				var top    = Math.floor( windowHeight * view.top );
+				var width  = Math.floor( windowWidth  * view.width );
+				var height = Math.floor( windowHeight * view.height );
+				renderer.setViewport( left, top, width, height );
+				renderer.setScissor( left, top, width, height );
+				renderer.setScissorTest( true );
+				renderer.setClearColor( view.background );
+				camera.aspect = width / height;
+				camera.updateProjectionMatrix();
+				renderer.render( scene, camera );
+
+
+				for ( var ii = 1; ii < views.length; ++ii ) {
+					view = views[ii];
+					var camera = view.camera;
+					if(ii < (views.length - 1)) {
+						view.updateCamera( camera, scene, mouseX, mouseY );
+					}
+					left   = Math.floor( windowWidth  * view.left );
+					top    = Math.floor( windowHeight * view.top );
+					width  = Math.floor( windowWidth  * view.width );
+					height = Math.floor( windowHeight * view.height );
+					renderer.setViewport( left, top, width, height );
+					renderer.setScissor( left, top, width, height );
+					renderer.setScissorTest( true );
+					renderer.setClearColor( view.background );
+					camera.aspect = width / height;
+					camera.updateProjectionMatrix();
+					renderer.render( scene, camera );
+				}
+
+				
+			}
+		</script>
+
+	</body>
+</html>
